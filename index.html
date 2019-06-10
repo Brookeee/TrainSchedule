@@ -1,84 +1,81 @@
 <!DOCTYPE html>
 <head>
-    <link rel="sty;esheet" type="text/css" href="style.css"/>
+    <!-- Link to CSS -->
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <!-- Bootstrap link-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+    <meta charset="UTF-8">
 </head>
 <body>
-     <div class="jumbotron">
-                <div class="container">
-                  <h1 class="display-4">All Board the Train! </h1>
-                  <p class="lead">Come along and enjoy the ride</p>
-                </div>
+    <div class="jumbotron">
+        <div class="container">
+            <h1 class = "jumbo">All Board the Train!</h1>
+            <p class= "small">Come along and enjoy the ride</p>
         </div>
-              <div container>
-                  <br>
-                  <div class = "card">
-                      <div class = "card-header text-center">
-                          Current Train Schedule 
-                      </div>
-                  </div>
-                  <div class="card-body">
-                        <table class="table table-sm text-center">
-                            <thead>
-                                <tr>
-                                <th>Train Name</th>
-                                <th>Destination</th>
-                                <th>Frequency (min)</th>
-                                <th>Next Arrival</th>
-                                <th>Minutes Away</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                    <tr id="display">
-                                            <td class="train-display"></td>
-                                            <td class="destination-display"></td>
-                                            <td class="freq-display"></td>
-                                            <td class="arrival-display"></td>
-                                            <td class="minutes-display"></td>
-                                        </tr>
-                                </tbody>
-                            </table>
-                            </div>
-                
-                        </div>
-                        <br>
-                        <br>
-                        <div class="card">
-                                <div class="card-header text-center">
-                                    Add Train
-                                </div>
-                                <div class="card-body">
-                                    <form>
-                                        <div class="form-group">
-                                            <label for="trainName">Train Name</label>
-                                            <input type="text" class="form-control" id="train-name" >
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="destination">Destination</label>
-                                            <input type="text" class="form-control" id="destination" >
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="trainTime">First Train Time</label>
-                                            <input type="text" class="form-control" id="train-time" >
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="frequency">Frequency (minutes)</label>
-                                            <input type="text" class="form-control" id="frequency" >
-                                        </div>
-                                        <button type="submit" class="btn btn-dark" id="submit">Submit</button>
-                                    </form>         
-                                </div>
-                            </div>
-                        </div>  
-                
-              </div>
-    
+        <div container>
+            <br>
+            <div class="card">
+                <div class="card-header text-center">
+                    Current Train Schedule
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <table class="table table-sm text-center">
+                <thead>
+                    <tr>
+                    <th>Train Name</th>
+                    <th>Destination</th>
+                    <th>Frequency (min)</th>
+                    <th>Next Arrival</th>
+                    <th>Minutes Away</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr id="show">
+                        <td class="train"></td>
+                        <td class="destination"></td>
+                        <td class="freq"></td>
+                        <td class="nextArriv"></td>
+                        <td class="minsAway"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <br>
+        <br>
+        <div class="card">
+            <div class="card-header text-center">
+                Add Train
+            </div>
+        </div>
+        <div class="card-body">
+            <form>
+                <div class="form-group">
+                    <label for="trainName">Train Name</label>
+                    <input type="text" class="form-control" id="train-name">
+                </div>
+                <div class="form-group">
+                    <label for="destination">Destination</label>
+                    <input type="text" class="form-control" id="godestination">
+                </div>
+                <div class="form-group">
+                    <label for="timeTrain">First Train Time</label>
+                    <input type="text" class="form-control" id="time-train">
+                </div>
+                <div class="form-group">
+                    <label for="frequency">Frequency (minutes)</label>
+                    <input type="text" class="form-control" id="freqlevel">
+                </div>
+                <button type="submit" class="btn btn-dark" id="submit">Submit</button>
+            </form>
+        </div>
+        
 
+        <!-- Javascript Logic-->
+        <script src="logic.js"></script>
 
-
-
-    <!-- Javascript logic -->
-    <script src="logic.js"></script>
+    </div>
 </body>
 </html>
