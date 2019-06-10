@@ -1,0 +1,8 @@
+.jumbotron {
+    background-image: url("trainbkg.jpg");
+    color: black;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+body {
+    width: 100%;
+}
