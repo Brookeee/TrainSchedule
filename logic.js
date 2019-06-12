@@ -1,6 +1,4 @@
-$(document).ready(function() {
-
-    // Firebase 
+// Firebase 
     var firebaseConfig = {
         apiKey: "AIzaSyCpdi7JmX5YD141KC_3TMmuTjPf5RA-3UM",
         authDomain: "train-schedule-a2a38.firebaseapp.com",
@@ -10,7 +8,6 @@ $(document).ready(function() {
         messagingSenderId: "1097048933013",
         appId: "1:1097048933013:web:9dafd4bcaf3e29cd"
       };
-
       // Initialize Firebase
       firebase.initializeApp(firebaseConfig);
 
@@ -20,58 +17,59 @@ $(document).ready(function() {
 
       $("#submit").on("click", function(event){
         event.preventDefault();
-      })
 
       var tName = $("#train-name").val().trim();
       var destination = $("#godestination").val().trim();
       var tTime = $("#time-train").val().trim();
-      var freq = $("#freqlevel").val().trim();
-
+      var freq = $("#freq").val().trim();
+    
       // new train data holder 
-      var newData = {
+      database.ref().push({
         trainName: tName,
         tDest: destination,
         trainTime: tTime,
         tFreq: freq,
         dateAdded: firebase.database.ServerValue.TIMESTAMP
-      };
-
-      database.push(newData);
-
-      // Console log
-      console.log(newData.trainName);
-      console.log(newData.tDest);
-      console.log(newData.trainTime);
-      console.log(newData.tFreq);
-
+      });
+    });
       // clear entry
       $("#train-name").val("");
       $("#godestination").val("");
       $("#time-train").val("");
       $("#freqlevel").val("");
+
       // Event to add new train info to database
-      database.ref().on("child_create", function(childSnapshot){
-      console.log(childSnapshot.val());
-      
+      database.ref().on("child_added", function(snapshot){
       // variables for firebase 
-      var newName = childSnapshot.val().trainName;
-      var newDest = childSnapshot.val().tDest;
-      var newTime = childSnapshot.val().trainTime;
-      var newFreq = childSnapshot.val().tFreq;
+      var newName = snapshot.val().trainName;
+      var newDest = snapshot.val().tDest;
+      var newTime = snapshot.val().trainTime;
+      var newFreq = snapshot.val().tFreq;
+
+      console.log(newName);
+      console.log(newDest);
+      console.log(newTime);
+      console.log(newFreq);
+
+      var firstTimeCon = moment(newName, "hh:mm").subtract(1, "years");
+      console.log(firstTimeCon);
+
+      var currentTime = moment();
+      console.log("current time: " + moment(currentTime).format("HH:mm"));
       
-      var timeDiff = moment().diff(moment.unix(newTime),"minutes");
-      var timeLeft = moment().diff(moment.unix(newTime),"minutes") % newFreq;
-      var firebaseMins = newFreq - timeLeft;
-      
-      var newArrival = moment().add(minutes, "m").format("hh:mm A");
-      
-      console.log(minutes);
-      console.log(newArrival);
-      console.log(moment().format("hh:mm A"));
-      console.log(moment().format("X"));
-  
-  
-  })
+      var timeDiff = moment().diff(moment(firstTimeCon, "minutes"));
+      console.log("difference in time: " + timeDiff); //NaN error, fix 
+
+      var timeRemain = timeDiff % newFreq;
+      console.log(timeRemain); //NaN error, fix 
+
+      var minsTill = newFreq - timeRemain;
+      console.log("minutes till train: " + minsTill);
+
+      var nextTrain = moment().add(minsTill, "minutes").format("hh:mm");
+      console.log("arrival time: " + moment(nextTrain).format("hh:mm")); // Error, fix 
 
 
-});
+  });
+
+
