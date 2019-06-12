@@ -44,7 +44,7 @@ $(document).ready(function() {
       console.log(newData.trainTime);
       console.log(newData.tFreq);
 
-      // clear
+      // clear entry
       $("#train-name").val("");
       $("#godestination").val("");
       $("#time-train").val("");
@@ -52,6 +52,8 @@ $(document).ready(function() {
 });
 // Event to add new train info to database
 database.ref().on("child_create", function(childSnapshot){
+console.log(childSnapshot.val());
+
 
 })
 
