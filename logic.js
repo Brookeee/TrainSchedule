@@ -36,7 +36,7 @@ $(document).ready(function() {
         dateAdded: firebase.database.ServerValue.TIMESTAMP
       };
 
-      database.ref().push(newData);
+      database.push(newData);
 
       // Console log
       console.log(newData.trainName);
@@ -53,6 +53,12 @@ $(document).ready(function() {
 // Event to add new train info to database
 database.ref().on("child_create", function(childSnapshot){
 console.log(childSnapshot.val());
+
+// variables for firebase 
+var newName = childSnapshot.val().trainName;
+var newDest = childSnapshot.val().tDest;
+var newTime = childSnapshot.val().trainTime;
+var newFreq = childSnapshot.val().tFreq;
 
 
 })

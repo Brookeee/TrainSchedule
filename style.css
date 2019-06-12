@@ -1,8 +1,16 @@
-.jumbotron {
-    background-image: url("trainbkg.jpg");
-    color: black;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+header {
+    background-image: url("blkwhitetrain.jpeg");
+    color: white;
+    margin: 15px;
+    height: 275px;
+    text-align: center;
 }
 body {
     width: 100%;
+}
+.card-header1 {
+    margin: 10px;
+}
+.card-body {
+    margin: 5px;
 }
