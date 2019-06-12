@@ -14,7 +14,7 @@ $(document).ready(function() {
       // Initialize Firebase
       firebase.initializeApp(firebaseConfig);
 
-      var database = firebase.database().ref();
+      var database = firebase.database();
 
       // Add new train info 
 
@@ -49,17 +49,29 @@ $(document).ready(function() {
       $("#godestination").val("");
       $("#time-train").val("");
       $("#freqlevel").val("");
+      // Event to add new train info to database
+      database.ref().on("child_create", function(childSnapshot){
+      console.log(childSnapshot.val());
+      
+      // variables for firebase 
+      var newName = childSnapshot.val().trainName;
+      var newDest = childSnapshot.val().tDest;
+      var newTime = childSnapshot.val().trainTime;
+      var newFreq = childSnapshot.val().tFreq;
+      
+      var timeDiff = moment().diff(moment.unix(newTime),"minutes");
+      var timeLeft = moment().diff(moment.unix(newTime),"minutes") % newFreq;
+      var firebaseMins = newFreq - timeLeft;
+      
+      var newArrival = moment().add(minutes, "m").format("hh:mm A");
+      
+      console.log(minutes);
+      console.log(newArrival);
+      console.log(moment().format("hh:mm A"));
+      console.log(moment().format("X"));
+  
+  
+  })
+
+
 });
-// Event to add new train info to database
-database.ref().on("child_create", function(childSnapshot){
-console.log(childSnapshot.val());
-
-// variables for firebase 
-var newName = childSnapshot.val().trainName;
-var newDest = childSnapshot.val().tDest;
-var newTime = childSnapshot.val().trainTime;
-var newFreq = childSnapshot.val().tFreq;
-
-
-})
-
