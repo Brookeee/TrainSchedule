@@ -31,12 +31,18 @@
         tFreq: freq,
         dateAdded: firebase.database.ServerValue.TIMESTAMP
       });
-    });
-      // clear entry
       $("#train-name").val("");
       $("#godestination").val("");
       $("#time-train").val("");
-      $("#freqlevel").val("");
+      $("#freq").val("");
+
+    });
+      // // clear entry
+      // $("#train-name").val("");
+      // $("#godestination").val("");
+      // $("#time-train").val("");
+      // $("#freq").val("");
+      
 
       // Event to add new train info to database
       database.ref().on("child_added", function(snapshot){
