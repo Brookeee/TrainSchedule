@@ -58,7 +58,7 @@
       console.log("current time: " + moment(currentTime).format("HH:mm"));
       
       var timeDiff = moment().diff(moment(firstTimeCon, "minutes"));
-      console.log("difference in time: " + timeDiff); //NaN error, fix 
+      console.log("difference in time: " + timeDiff); 
 
       var timeRemain = timeDiff % newFreq;
       console.log(timeRemain); //NaN error, fix 
@@ -69,6 +69,7 @@
       var nextTrain = moment().add(minsTill, "minutes").format("hh:mm");
       console.log("arrival time: " + moment(nextTrain).format("hh:mm")); // Error, fix 
 
+        $("#table-display > tbody").append("<tr><td>" + newName + "</td><td>" + newDest + "</td><td>" + newFreq + "</td><td>" + nextTrain + "</td><td>" + minsTill + "</td></tr>");
 
   });
 
