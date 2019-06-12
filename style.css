@@ -3,7 +3,7 @@ header {
     opacity: 10.1;
     color: white;
     margin: 20px;
-    height: 275px;
+    height: 200px;
     text-align: center;
     font-size: 85px;
     font-family: Arial, Helvetica, sans-serif;
@@ -45,4 +45,7 @@ body {
 th, td, label {
     color: white;
     font-size: 20px;
+}
+#submit {
+    font-size: 25px;
 }

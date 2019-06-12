@@ -13,7 +13,7 @@
 
       var database = firebase.database();
 
-      // Add new train info 
+      // Add new train info via submit button
 
       $("#submit").on("click", function(event){
         event.preventDefault();
@@ -22,7 +22,9 @@
       var destination = $("#godestination").val().trim();
       var tTime = $("#time-train").val().trim();
       var freq = $("#freq").val().trim();
-    
+
+        //alert for new train entry 
+      alert("Welcome aboard!");
       // new train data holder 
       database.ref().push({
         trainName: tName,
@@ -31,50 +33,48 @@
         tFreq: freq,
         dateAdded: firebase.database.ServerValue.TIMESTAMP
       });
+      // clear user data in add train 
       $("#train-name").val("");
       $("#godestination").val("");
       $("#time-train").val("");
       $("#freq").val("");
 
     });
-      // // clear entry
-      // $("#train-name").val("");
-      // $("#godestination").val("");
-      // $("#time-train").val("");
-      // $("#freq").val("");
-      
-
+    
       // Event to add new train info to database
       database.ref().on("child_added", function(snapshot){
-      // variables for firebase 
+      // temp holder variables for firebase 
       var newName = snapshot.val().trainName;
       var newDest = snapshot.val().tDest;
       var newTime = snapshot.val().trainTime;
       var newFreq = snapshot.val().tFreq;
 
+      //console.log new train info entered 
       console.log(newName);
       console.log(newDest);
       console.log(newTime);
       console.log(newFreq);
 
-      var firstTimeCon = moment(newName, "hh:mm").subtract(1, "years");
+        //moment.js 
+      var firstTimeCon = moment(snapshot.val().newName, "hh:mm").subtract(1);
       console.log(firstTimeCon);
 
-      var currentTime = moment();
-      console.log("current time: " + moment(currentTime).format("HH:mm"));
+      // var currentTime = moment();
+      // console.log("current time: " + moment(currentTime).format("HH:mm"));
       
       var timeDiff = moment().diff(moment(firstTimeCon, "minutes"));
       console.log("difference in time: " + timeDiff); 
 
-      var timeRemain = timeDiff % newFreq;
+      var timeRemain = timeDiff % snapshot.val().tFreq;
       console.log(timeRemain); //NaN error, fix 
 
-      var minsTill = newFreq - timeRemain;
+      var minsTill = snapshot.val().newFreq - timeRemain;
       console.log("minutes till train: " + minsTill);
 
-      var nextTrain = moment().add(minsTill, "minutes").format("hh:mm");
+      var nextTrain = moment().add(minsTill, "minutes");
       console.log("arrival time: " + moment(nextTrain).format("hh:mm")); // Error, fix 
-
+      
+        // Append new train data to "show" table 
         $("#table-display > tbody").append("<tr><td>" + newName + "</td><td>" + newDest + "</td><td>" + newFreq + "</td><td>" + nextTrain + "</td><td>" + minsTill + "</td></tr>");
 
   });
