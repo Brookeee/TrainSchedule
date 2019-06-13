@@ -63,13 +63,13 @@
       // console.log("current time: " + moment(currentTime).format("HH:mm"));
       
       var timeDiff = moment().diff(moment(firstTimeCon, "minutes"));
-      console.log("difference in time: " + timeDiff); 
+      console.log("difference in time: " + timeDiff); //NaN error, not working
 
       var timeRemain = timeDiff % snapshot.val().tFreq;
-      console.log(timeRemain); //NaN error, fix 
+      console.log(timeRemain); //NaN error, working 
 
-      var minsTill = snapshot.val().newFreq - timeRemain;
-      console.log("minutes till train: " + minsTill);
+      var minsTill = newFreq - timeRemain;
+      console.log("minutes till train: " + minsTill); // NaN error, not working 
 
       var nextTrain = moment().add(minsTill, "minutes");
       console.log("arrival time: " + moment(nextTrain).format("hh:mm")); // Error, fix 
