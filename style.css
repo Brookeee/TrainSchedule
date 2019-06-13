@@ -10,7 +10,7 @@ header {
 }
 body {
     background-image: url("Trainbg.jpg");
-    font-family: 'Poiret One', cursive;
+    font-family: Arial, Helvetica, sans-serif;
 }
 .card-header {
     margin: 10px;
